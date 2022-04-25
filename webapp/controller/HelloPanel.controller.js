@@ -1,7 +1,8 @@
 sap.ui.define([
     'sap/ui/core/mvc/Controller',
-    'sap/m/MessageToast'
-], (Controller,MessageToast) => {
+    'sap/m/MessageToast',
+    "sap/ui/core/Fragment"
+], (Controller,MessageToast,Fragment) => {
     'use strict';
     return Controller.extend('sap.ui.demo.walkthrough.controller.HelloPanel', {
         //Event to Initialize Controller (Loads when View is loaded)
@@ -17,6 +18,7 @@ sap.ui.define([
          // show message
          MessageToast.show(sMsg);
         },
+        //Enent Handler for Dialog Fragment
         onOpenDialog : function () {
             // create dialog lazily
 			if (!this.pDialog) {
@@ -27,6 +29,11 @@ sap.ui.define([
 			this.pDialog.then(function(oDialog) {
 				oDialog.open();
 			});
+        },
+        onCloseDialog : function () {
+            // note: We don't need to chain to the pDialog promise, since this event-handler
+			// is only called from within the loaded dialog itself.
+			this.byId("helloDialog").close();
         }
     });
 });
