@@ -25,6 +25,9 @@ sap.ui.define(
          this.setModel(oModel);      //Bind view to the model above
           //this.getView() not reqd in Component.js in above statement 
          // set i18n model in Manifest.json
+        
+         // create the views based on the url/hash
+			   this.getRouter().initialize();
       }
     });
   }
