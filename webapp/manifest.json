@@ -11,7 +11,7 @@
 	},
 	"dataSources": {
 		"invoiceRemote": {
-		  "uri": "/destinations/northwind/V2/Northwind/Northwind.svc/",
+		  "uri": "http://localhost:8081/services.odata.org/V2/Northwind/Northwind.svc/",
 		  "type": "OData",
 		  "settings": {
 			"odataVersion": "2.0"
@@ -50,7 +50,10 @@
 		}
 	  },
 	  "invoice": {
-		"dataSource": "invoiceRemote"
+		"dataSource": "invoiceRemote",
+		"settings": {
+			"useBatch": false
+		}
 	  }
 	},
 	"routing": {
@@ -69,7 +72,7 @@
 		  "target": "overview"
 		},
 		{
-		  "pattern": "detail",
+		  "pattern": "detail/{invoicePath}",
 		  "name": "detail",
 		  "target": "detail"
 		}
